@@ -1,0 +1,11 @@
+INDEX VERSION 1.134+C:\Users\ASUS\Documents\CURSO KRAKEDEV\Modulo 3\WorkSpaceModulo3\.metadata\.plugins\org.eclipse.jdt.core
+3486249274.index
+1961928586.index
+1865797976.index
+4207611252.index
+1492874287.index
+1273440352.index
+4287672536.index
+2567683705.index
+2427508876.index
+29549472.index

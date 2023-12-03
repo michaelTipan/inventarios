@@ -1,0 +1,8 @@
+package com.krakedev.inventarios.bdd;
+
+public class Snippet {
+	public static void main(String[] args) {
+		proveedor
+	}
+}
+

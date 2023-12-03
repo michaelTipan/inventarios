@@ -1,0 +1,5 @@
+package com.krakedev.excepciones;
+
+public class KrakeDevException {
+
+}
