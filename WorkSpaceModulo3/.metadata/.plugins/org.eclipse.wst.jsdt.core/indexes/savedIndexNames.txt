@@ -1,9 +1,5 @@
 INDEX VERSION 1.4+C:\Users\ASUS\Documents\CURSO KRAKEDEV\Modulo 3\WorkSpaceModulo3\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
 4242947767.index
-4287672536.index
-2427508876.index
 3394379436.index
-1273440352.index
 29781241.index
 3945715988.index
-2439389715.index

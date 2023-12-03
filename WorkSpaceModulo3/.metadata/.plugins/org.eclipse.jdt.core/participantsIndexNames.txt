@@ -1,3 +1,5 @@
 INDEX VERSION 1.134
+C:\Users\ASUS\Documents\CURSO KRAKEDEV\Modulo 3\modulo3\WorkSpaceModulo3\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1012163473.index
+\inventarios\src\main\java
 C:\Users\ASUS\Documents\CURSO KRAKEDEV\Modulo 3\WorkSpaceModulo3\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1012163473.index
 \inventarios\src\main\java
