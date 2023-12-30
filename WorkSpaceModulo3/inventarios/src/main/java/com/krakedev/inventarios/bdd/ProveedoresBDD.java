@@ -64,7 +64,7 @@ public class ProveedoresBDD {
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new KrakeDevException("Error al insertar el cliente. Detalle:" + e.getMessage());
+			throw new KrakeDevException("Error al insertar el PROVEEDOR. Detalle:" + e.getMessage());
 		} catch (KrakeDevException e) {
 			throw e;
 		} finally {
