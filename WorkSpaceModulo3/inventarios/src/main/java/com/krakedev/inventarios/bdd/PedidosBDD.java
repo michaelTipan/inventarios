@@ -60,7 +60,49 @@ public class PedidosBDD {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new KrakeDevException("Error al insertar el PRODUCTO. Detalle:" + e.getMessage());
+			throw new KrakeDevException("Error al insertar al insertar. Detalle:" + e.getMessage());
+		} catch (KrakeDevException e) {
+			throw e;
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public void recibir(Pedido pedido) throws KrakeDevException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		PreparedStatement psDet = null;
+		try {
+			con = ConexionBDD.obtenerConexion();
+			ps = con.prepareStatement("update cabecera_pedidos set estado=? where numero_cp=?");
+			ps.setString(1, "R");
+			ps.setInt(2, pedido.getCodigo());
+			ps.executeUpdate();
+			ArrayList<DetallePedido> detallesPedido = pedido.getDetalles();
+			for (DetallePedido det : detallesPedido) {
+				psDet = con.prepareStatement(
+						"update detalle_pedidos set subtotal=?, cantidad_recibida=? where codigo_dp=?");
+
+				BigDecimal pv = det.getProducto().getPrecioVenta();
+				BigDecimal cantidad = new BigDecimal(det.getCantidadRecibida());
+				BigDecimal subtotal = pv.multiply(cantidad);
+				
+				psDet.setBigDecimal(1, subtotal);
+				psDet.setInt(2, det.getCantidadRecibida());
+				psDet.setInt(3, det.getCodigo());
+				
+				psDet.executeUpdate();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new KrakeDevException("Error al insertar recibir. Detalle:" + e.getMessage());
 		} catch (KrakeDevException e) {
 			throw e;
 		} finally {
