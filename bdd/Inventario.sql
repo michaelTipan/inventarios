@@ -124,7 +124,7 @@ values
 	('R','Recibido');
 
 create table cabecera_pedidos(
-	numero_cp int not null,
+	numero_cp serial not null,
 	proveedor varchar(100) not null,
 	fecha date not null,
 	estado char(1) not null,
@@ -135,13 +135,13 @@ create table cabecera_pedidos(
 		references estados_pedidos(codigo_ep)
 );
 
-insert into cabecera_pedidos
+insert into cabecera_pedidos(proveedor, fecha, estado)
 values
-	(1,'1727155661','2023-11-20','R'),
-	(2,'1727155661','2023-11-21','R');
+	('1727155661','2023-11-20','R'),
+	('1727155661','2023-11-21','R');
 
 create table detalle_pedidos(
-	codigo_dp int not null,
+	codigo_dp serial not null,
 	cabecera_pedido int not null,
 	producto int not null,
 	cantidad_solicitada int not null,
@@ -154,14 +154,14 @@ create table detalle_pedidos(
 		references productos(codigo_prod)
 );
 
-insert into detalle_pedidos
+insert into detalle_pedidos(cabecera_pedido, producto, cantidad_solicitada, subtotal, cantidad_recibida)
 values
-	(1,1,1,100,37.29,100),
-	(2,1,4,50,11.80,50),
-	(3,2,1,10,3.73,10);
+	(1,1,100,37.29,100),
+	(1,4,50,11.80,50),
+	(2,1,10,3.73,10);
 	
 create table historial_stock(
-	codigo_hs int not null,
+	codigo_hs serial not null,
 	fecha timestamp not null,
 	referencia varchar(20) not null,
 	producto int not null,
@@ -171,16 +171,16 @@ create table historial_stock(
 		references productos(codigo_prod)
 );
 
-insert into historial_stock
+insert into historial_stock(fecha, referencia, producto, cantidad)
 values
-	(1,'2023-11-20 19:59:00','PEDIDO 1',1,100),
-	(2,'2023-11-21 19:59:00','PEDIDO 1',4,50),
-	(3,'2023-11-22 20:00:00','PEDIDO 2',1,10),
-	(4,'2023-11-23 20:00:00','VENTA 1',1,-5),
-	(5,'2023-11-24 20:00','VENTA 2',4,-1);
+	('2023-11-20 19:59:00','PEDIDO 1',1,100),
+	('2023-11-21 19:59:00','PEDIDO 1',4,50),
+	('2023-11-22 20:00:00','PEDIDO 2',1,10),
+	('2023-11-23 20:00:00','VENTA 1',1,-5),
+	('2023-11-24 20:00','VENTA 2',4,-1);
 
 create table cabecera_ventas(
-	codigo_cv int not null,
+	codigo_cv serial not null,
 	fecha  timestamp not null,
 	total_sin_iva money not null,
 	iva money not null,
@@ -188,9 +188,9 @@ create table cabecera_ventas(
 	constraint cabecera_ventas_pk primary key (codigo_cv)
 );
 
-insert into cabecera_ventas
+insert into cabecera_ventas(fecha, total_sin_iva, iva, total)
 values
-	(1,'2023-11-22 20:00:00',3.36,0.39,3.65);
+	('2023-11-22 20:00:00',3.36,0.39,3.65);
 	
 create table detalle_ventas(
 	codigo_dv serial not null,

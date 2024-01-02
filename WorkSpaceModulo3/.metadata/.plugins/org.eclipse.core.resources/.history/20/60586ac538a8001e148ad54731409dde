@@ -1,0 +1,15 @@
+package com.krakedev.inventarios.entidades;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
+
+public class Venta {
+	private int codigo;
+	private Date fecha;
+	private BigDecimal totalSinIva;
+	private BigDecimal iva;
+	private BigDecimal total;
+
+	private ArrayList<DetalleVenta> detalles;
+}

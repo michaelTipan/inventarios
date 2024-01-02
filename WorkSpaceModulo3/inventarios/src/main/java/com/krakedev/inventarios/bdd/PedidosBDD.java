@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import com.krakedev.inventarios.entidades.DetallePedido;
-import com.krakedev.inventarios.entidades.HistorialStock;
 import com.krakedev.inventarios.entidades.Pedido;
 import com.krakedev.inventarios.excepciones.KrakeDevException;
 import com.krakedev.inventarios.utils.ConexionBDD;
