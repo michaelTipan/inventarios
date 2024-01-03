@@ -7,6 +7,10 @@ public class Categoria {
 
 	public Categoria() {
 	}
+	
+	public Categoria(int codigo) {
+		this.codigo = codigo;
+	}
 
 	public Categoria(int codigo, String nombre, Categoria categoriaPadre) {
 		super();

@@ -11,6 +11,9 @@ public class Proveedor {
 	public Proveedor() {
 
 	}
+	public Proveedor(String identificador) {
+		this.identificador = identificador;
+	}
 
 	public Proveedor(String identificador, TipoDocumento tipoDocumeto, String nombre, String telefono, String correo,
 			String direccion) {

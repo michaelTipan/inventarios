@@ -14,6 +14,9 @@ public class Producto {
 
 	public Producto() {
 	}
+	public Producto(int codigo) {
+		this.codigo = codigo;
+	}
 
 	public Producto(int codigo, String nombre, UnidadMedida unidadMedida, BigDecimal precioVenta, boolean tieneIva,
 			BigDecimal coste, Categoria categoria, int stock) {

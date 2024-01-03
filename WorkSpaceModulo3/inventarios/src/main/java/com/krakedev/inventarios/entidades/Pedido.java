@@ -13,6 +13,9 @@ public class Pedido {
 
 	public Pedido() {
 	}
+	public Pedido(int codigo) {
+		this.codigo = codigo;
+	}
 
 	public Pedido(int codigo, Proveedor proveedor, Date fecha, EstadoPedido estado) {
 		super();
@@ -20,6 +23,7 @@ public class Pedido {
 		this.proveedor = proveedor;
 		this.fecha = fecha;
 		this.estado = estado;
+		this.detalles = new ArrayList<DetallePedido>();
 	}
 
 	public int getCodigo() {

@@ -102,4 +102,72 @@ public class ProductosBDD {
 			}
 		}
 	}
+	
+	
+	public void actualizar(Producto producto) throws KrakeDevException {
+		Connection con = null;
+		try {
+			con = ConexionBDD.obtenerConexion();
+			PreparedStatement ps = con.prepareStatement(
+					"update productos set nombre=?, unidad_medida=?, precio_venta=?, tiene_iva=?, coste=?, categoria=? where codigo_prod=?");
+			ps.setString(1, producto.getNombre());
+			ps.setString(2, producto.getUnidadMedida().getCodigo());
+			ps.setBigDecimal(3, producto.getPrecioVenta());
+			ps.setBoolean(4, producto.isTieneIva());
+			ps.setBigDecimal(5, producto.getCoste());
+			ps.setInt(6, producto.getCategoria().getCodigo());
+			ps.setInt(7, producto.getCodigo());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new KrakeDevException("Error al actualizar el PRODUCTO. Detalle:" + e.getMessage());
+		} catch (KrakeDevException e) {
+			throw e;
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public Producto buscarPorCodigo(int codigo) throws KrakeDevException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Producto producto = null;
+		try {
+			con = ConexionBDD.obtenerConexion();
+			ps = con.prepareStatement(
+					"select codigo_prod, nombre, unidad_medida, cast(precio_venta as decimal(6,2)), tiene_iva, cast(coste as decimal(6,2)), categoria, stock  "
+					+ "from productos "
+					+ "where codigo_prod = ?");
+			ps.setInt(1, codigo);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				int codigoProd = rs.getInt("codigo_prod");
+				String nombre = rs.getString("nombre");
+				String strUnidadMedida = rs.getString("unidad_medida");
+				UnidadMedida unidadMedida = new UnidadMedida(strUnidadMedida);
+				BigDecimal precioVenta = rs.getBigDecimal("precio_venta");
+				boolean tieneIva = rs.getBoolean("tiene_iva");
+				BigDecimal coste = rs.getBigDecimal("coste");
+				int strCategoria = rs.getInt("categoria");
+				Categoria categoria = new Categoria(strCategoria);
+				int stock = rs.getInt("stock");
+				producto = new Producto(codigoProd, nombre, unidadMedida, precioVenta, tieneIva, coste, categoria, stock);
+			}
+		} catch (KrakeDevException e) {
+			e.printStackTrace();
+			throw e;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new KrakeDevException("Error al consultar. Detalle:" + e.getMessage());
+		}
+		return producto;
+	}
 }

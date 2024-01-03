@@ -7,6 +7,10 @@ public class UnidadMedida {
 
 	public UnidadMedida() {
 	}
+	
+	public UnidadMedida(String codigo) {
+		this.codigo = codigo;
+	}
 
 	public UnidadMedida(String codigo, String descripcion, CategoriaUnidadMedida categoria) {
 		super();
